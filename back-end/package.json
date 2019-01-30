@@ -1,0 +1,11 @@
+{
+  "name": "telzir-backend",
+  "version": "1.0.0",
+  "description": "Backend for telzir system",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fredson Rodrigues",
+  "license": "ISC"
+}
