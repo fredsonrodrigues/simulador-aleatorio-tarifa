@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Input, Select, Button } from "../Components";
+import FormPage from '../Pages/FormPage';
 
 describe('Testing Common Components', () => {
 
@@ -19,6 +20,14 @@ describe('Testing Common Components', () => {
     it('Button without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<Button />, div);
+        ReactDOM.unmountComponentAtNode(div);
+    });
+});
+describe('Testing Custom Pages', () => {
+
+    test('FormPage renders without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<FormPage />, div);
         ReactDOM.unmountComponentAtNode(div);
     });
 });
