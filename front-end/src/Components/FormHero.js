@@ -6,7 +6,7 @@ class FormHero extends Component {
       <section className="hero is-info is-fullheight">
 
         <div className="hero-body">
-          <div className="container ">
+          <div className="container">
             {this.props.children}
           </div>
         </div>
