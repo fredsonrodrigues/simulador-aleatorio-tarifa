@@ -3,10 +3,30 @@ import { FormHero, Input, Select, Button } from "../Components";
 
 class FormPage extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      plano: "",
+      origem: "",
+      destino: "",
+      valor: ""
+    }
+    this.changeInput = this.changeInput.bind(this)
+  }
+
+  changeInput = e => {
+    let val = this.state
+    val[e.target.name] = e.target.value
+    this.setState(val)
+  }
+
   SelectPlano = props => {
     return (
-      <Select label={props.label}>
-        <option>Plano</option>
+      <Select name={"plano"}
+        label={props.label}
+        value={this.state.plano}
+        onChange={this.changeInput}>
+        <option>Selecione Plano</option>
         <option>FaleMais 30</option>
         <option>FaleMais 60</option>
         <option>FaleMais 120</option>
@@ -16,26 +36,32 @@ class FormPage extends Component {
 
   SelectOrigem = props => {
     return (
-      <Select label={props.label}>
-        <option>Plano</option>
-        <option>FaleMais 30</option>
-        <option>FaleMais 60</option>
-        <option>FaleMais 120</option>
+      <Select name={"origem"} 
+        label={props.label}
+        value={this.state.origem}
+        onChange={this.changeInput}>
+        <option>011</option>
+        <option>016</option>
+        <option>017</option>
+        <option>018</option>
       </Select>
     )
   };
 
   SelectDestino = props => {
     return (
-      <Select label={props.label}>
-        <option>Plano</option>
-        <option>FaleMais 30</option>
-        <option>FaleMais 60</option>
-        <option>FaleMais 120</option>
+      <Select name={"destino"}
+        label={props.label}
+        value={this.state.destino}
+        onChange={this.changeInput}>
+        <option>011</option>
+        <option>016</option>
+        <option>017</option>
+        <option>018</option>
       </Select>
     )
   };
-  
+
   render() {
     const { SelectPlano, SelectOrigem, SelectDestino } = this;
     return (
@@ -58,7 +84,12 @@ class FormPage extends Component {
         </div>
         <div className="columns">
           <div className="column is-two-fifths">
-            <Input label={"4. Por último, quantos minutos de ligação"} />
+            <Input
+              name={"valor"}
+              label={"4. Por último, quantos minutos de ligação"}
+              value={this.state.valor}
+              onChange={this.changeInput}
+            />
           </div>
         </div>
         <div className="columns">

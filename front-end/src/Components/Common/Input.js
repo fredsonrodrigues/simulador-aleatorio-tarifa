@@ -6,7 +6,12 @@ class Input extends Component {
       <div className="field">
         <label className="label">{this.props.label}</label>
         <div className="control">
-          <input className="input is-large" type="text" value="16" />
+          <input 
+              name={this.props.name} 
+              className="input is-large" 
+              type="text" 
+              value={this.props.value}
+              onChange={this.props.onChange} />
         </div>
       </div>
     );

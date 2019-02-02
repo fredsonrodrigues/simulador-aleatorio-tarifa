@@ -8,7 +8,7 @@ class FormResult extends Component {
         <p className="title">Simulador FaleMais Telzir</p>
         <p className="subtitle">
           Valores da ligação:
-          <strong> (011) para (017) por 50 min.</strong>.
+          <strong> (011) para (017) por 50 min.</strong>
         </p>
         <div className="columns">
           <div className="column is-one-fifth">
