@@ -1,49 +1,60 @@
 import React, { Component } from "react";
-import { FormHero, Input, Select, Button } from "../Components";
+import { connect } from 'react-redux';
+import { Input, Select, Button } from "../Components";
+import { submitForm, getPlans, getCodes } from '../Actions/FormActions'
 
 class FormPage extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      plano: "",
-      origem: "",
-      destino: "",
-      valor: ""
+      form: this.props.form,
+      codes: [],
+      plans: []
     }
     this.changeInput = this.changeInput.bind(this)
+    this.submitForm = this.submitForm.bind(this)
   }
 
   changeInput = e => {
     let val = this.state
-    val[e.target.name] = e.target.value
+    val.form[e.target.name] = e.target.value
+    console.log(val)
     this.setState(val)
+  }
+
+  submitForm() {
+    this.props.submitForm(this.state.form)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ plans: nextProps.plans, codes: nextProps.codes })
   }
 
   SelectPlano = props => {
     return (
       <Select name={"plano"}
         label={props.label}
-        value={this.state.plano}
+        value={this.state.form.plano}
         onChange={this.changeInput}>
         <option>Selecione Plano</option>
-        <option>FaleMais 30</option>
-        <option>FaleMais 60</option>
-        <option>FaleMais 120</option>
+        {this.state.plans.map((pl, index) => {
+          return <option key={index} value={pl.id}>{pl.plan}</option>
+        })}
       </Select>
     )
   };
 
   SelectOrigem = props => {
     return (
-      <Select name={"origem"} 
+      <Select name={"origem"}
         label={props.label}
-        value={this.state.origem}
+        value={this.state.form.origem}
         onChange={this.changeInput}>
-        <option>011</option>
-        <option>016</option>
-        <option>017</option>
-        <option>018</option>
+        <option>Selecione o Código</option>
+        {this.state.codes.map((pl, index) => {
+          return <option key={index} value={pl.code}>{pl.code}</option>
+        })}
       </Select>
     )
   };
@@ -52,20 +63,25 @@ class FormPage extends Component {
     return (
       <Select name={"destino"}
         label={props.label}
-        value={this.state.destino}
+        value={this.state.form.destino}
         onChange={this.changeInput}>
-        <option>011</option>
-        <option>016</option>
-        <option>017</option>
-        <option>018</option>
+        <option>Selecione o Código</option>
+        {this.state.codes.map((pl, index) => {
+          return <option key={index} value={pl.code}>{pl.code}</option>
+        })}
       </Select>
     )
   };
 
+  componentWillMount() {
+    this.props.getPlans()
+    this.props.getCodes()
+  }
+
   render() {
     const { SelectPlano, SelectOrigem, SelectDestino } = this;
     return (
-      <FormHero>
+      <div>
         <p className="title">Simulador FaleMais Telzir</p>
         <p className="subtitle">
           Descubra o valor da sua chamada com ou sem um plano
@@ -87,19 +103,32 @@ class FormPage extends Component {
             <Input
               name={"valor"}
               label={"4. Por último, quantos minutos de ligação"}
-              value={this.state.valor}
+              value={this.state.form.valor}
               onChange={this.changeInput}
             />
           </div>
         </div>
         <div className="columns">
           <div className="column is-two-fifths">
-            <Button>Simular</Button>
+            <Button onClick={this.submitForm}>Simular</Button>
           </div>
         </div>
-      </FormHero>
+      </div>
     );
   }
 }
 
-export default FormPage;
+const mapStateToProps = (state) => {
+  return {
+    form: state.form.form,
+    codes: state.form.codes,
+    plans: state.form.plans,
+  }
+}
+export default connect(mapStateToProps,
+  {
+    submitForm,
+    getPlans,
+    getCodes
+  }
+)(FormPage)

@@ -4,7 +4,7 @@ class Button extends Component {
     render() {
         return (
             <div className="control">
-                <button className="button is-large is-fullwidth is-light is-outlined">
+                <button onClick={this.props.onClick} className="button is-large is-fullwidth is-light is-outlined">
                     {this.props.children}
                 </button>
             </div>

@@ -7,7 +7,7 @@ class Select extends Component {
                 <label className="label">{this.props.label}</label>
                 <div className="control">
                     <div className="select is-large">
-                        <select>
+                        <select name={this.props.name} value={this.props.value} onChange={this.props.onChange}>
                             {this.props.children}
                         </select>
                     </div>
