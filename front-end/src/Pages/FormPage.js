@@ -1,116 +1,143 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { Input, Select, Button } from "../Components";
-import { submitForm, getPlans, getCodes } from '../Actions/FormActions'
+import { submitForm, getPlans, getCodes } from "../Actions/FormActions";
+import cellphones from "../Assets/img/cel.png";
+import '../Assets/img.css'
 
 class FormPage extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       form: this.props.form,
       codes: [],
       plans: []
-    }
-    this.changeInput = this.changeInput.bind(this)
-    this.submitForm = this.submitForm.bind(this)
+    };
+    this.changeInput = this.changeInput.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+    this.image = cellphones;
   }
 
   changeInput = e => {
-    let val = this.state
-    val.form[e.target.name] = e.target.value
-    console.log(val)
-    this.setState(val)
-  }
+    let val = this.state;
+    val.form[e.target.name] = e.target.value;
+    console.log(val);
+    this.setState(val);
+  };
 
   submitForm() {
-    this.props.submitForm(this.state.form)
+    this.props.submitForm(this.state.form);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ plans: nextProps.plans, codes: nextProps.codes })
+    this.setState({ plans: nextProps.plans, codes: nextProps.codes });
   }
 
   SelectPlano = props => {
     return (
-      <Select name={"plano"}
+      <Select
+        name={"plano"}
         label={props.label}
         value={this.state.form.plano}
-        onChange={this.changeInput}>
+        onChange={this.changeInput}
+      >
         <option>Selecione Plano</option>
         {this.state.plans.map((pl, index) => {
-          return <option key={index} value={pl.id}>{pl.plan}</option>
+          return (
+            <option key={index} value={pl.id}>
+              {pl.plan}
+            </option>
+          );
         })}
       </Select>
-    )
+    );
   };
 
   SelectOrigem = props => {
     return (
-      <Select name={"origem"}
+      <Select
+        name={"origem"}
         label={props.label}
         value={this.state.form.origem}
-        onChange={this.changeInput}>
+        onChange={this.changeInput}
+      >
         <option>Selecione o Código</option>
         {this.state.codes.map((pl, index) => {
-          return <option key={index} value={pl.code}>{pl.code}</option>
+          return (
+            <option key={index} value={pl.code}>
+              {pl.code}
+            </option>
+          );
         })}
       </Select>
-    )
+    );
   };
 
   SelectDestino = props => {
     return (
-      <Select name={"destino"}
+      <Select
+        name={"destino"}
         label={props.label}
         value={this.state.form.destino}
-        onChange={this.changeInput}>
+        onChange={this.changeInput}
+      >
         <option>Selecione o Código</option>
         {this.state.codes.map((pl, index) => {
-          return <option key={index} value={pl.code}>{pl.code}</option>
+          return (
+            <option key={index} value={pl.code}>
+              {pl.code}
+            </option>
+          );
         })}
       </Select>
-    )
+    );
   };
 
   componentWillMount() {
-    this.props.getPlans()
-    this.props.getCodes()
+    this.props.getPlans();
+    this.props.getCodes();
   }
 
   render() {
     const { SelectPlano, SelectOrigem, SelectDestino } = this;
     return (
       <div>
-        <p className="title">Simulador FaleMais Telzir</p>
-        <p className="subtitle">
-          Descubra o valor da sua chamada com ou sem um plano
-          <strong> FaleMais</strong>.
-        </p>
-        <div className="columns">
-          <div className="column">
-            <SelectPlano label="1. Selecione o Plano" />
-          </div>
-        </div>
-        <div className="columns">
-          <div className="column">
-            <SelectOrigem label={"2. Selecione a Origem da Ligação ..."} />
-            <SelectDestino label={"3. ... E o destino"} />
-          </div>
-        </div>
         <div className="columns">
           <div className="column is-half">
-            <Input
-              name={"valor"}
-              label={"4. Por último, quantos minutos de ligação"}
-              value={this.state.form.valor}
-              onChange={this.changeInput}
-            />
+            <p className="title">Simulador FaleMais</p>
+            <p className="subtitle">
+              Descubra o valor da sua chamada com ou sem um plano
+              <strong> FaleMais</strong>.
+            </p>
+            <img src={this.image} className="image-telzir" alt="telefone telzir"/>
           </div>
-        </div>
-        <div className="columns">
           <div className="column is-half">
-            <Button onClick={this.submitForm}>Simular</Button>
+            <div className="columns">
+              <div className="column">
+                <SelectPlano label="1. Selecione o Plano" />
+              </div>
+            </div>
+            <div className="columns">
+              <div className="column">
+                <SelectOrigem label={"2. Selecione a Origem da Ligação ..."} />
+                <SelectDestino label={"3. ... E o destino"} />
+              </div>
+            </div>
+            <div className="columns">
+              <div className="column is-three-quarters">
+                <Input
+                  name={"valor"}
+                  label={"4. Quantos minutos de ligação"}
+                  value={this.state.form.valor}
+                  onChange={this.changeInput}
+                />
+              </div>
+            </div>
+            <div className="columns">
+              <div className="column is-three-quarters">
+                <Button onClick={this.submitForm}>Simular</Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -118,17 +145,18 @@ class FormPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     form: state.form.form,
     codes: state.form.codes,
-    plans: state.form.plans,
-  }
-}
-export default connect(mapStateToProps,
+    plans: state.form.plans
+  };
+};
+export default connect(
+  mapStateToProps,
   {
     submitForm,
     getPlans,
     getCodes
   }
-)(FormPage)
+)(FormPage);

@@ -10,9 +10,6 @@ class FormHero extends Component {
             {this.props.children}
           </div>
         </div>
-
-        <div className="hero-foot">
-        </div>
       </section>
     );
   }

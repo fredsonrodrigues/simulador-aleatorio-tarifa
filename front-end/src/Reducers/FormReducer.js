@@ -18,7 +18,7 @@ const INITIALSTATE = {
     },
     simulation: [],
     loading: false,
-    page: 1,
+    page: 2,
     codes: [],
     plans: []
 };

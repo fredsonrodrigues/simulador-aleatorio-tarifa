@@ -1,0 +1,8 @@
+.image-telzir {
+    padding-top: 13%;
+}
+@media (max-width: 768px) {
+    .image-telzir {
+        display: none;
+    }
+  }
