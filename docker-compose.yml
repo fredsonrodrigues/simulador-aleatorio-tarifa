@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+  telzir-frontend:
+    container_name: telzir-frontend
+    build:
+      context: .
+      dockerfile: ./Docker/Front.Dockerfile
+    restart: always
+    environment:
+      - NODE_ENV=production
+    ports:
+      - '5003:80'
