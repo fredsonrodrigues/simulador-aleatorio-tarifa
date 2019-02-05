@@ -99,7 +99,7 @@ class FormPage extends Component {
           </div>
         </div>
         <div className="columns">
-          <div className="column is-two-fifths">
+          <div className="column is-half">
             <Input
               name={"valor"}
               label={"4. Por último, quantos minutos de ligação"}
@@ -109,7 +109,7 @@ class FormPage extends Component {
           </div>
         </div>
         <div className="columns">
-          <div className="column is-two-fifths">
+          <div className="column is-half">
             <Button onClick={this.submitForm}>Simular</Button>
           </div>
         </div>
