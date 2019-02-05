@@ -1,6 +1,8 @@
 var express = require("express");
 var app = express();
+var cors = require('cors');
 var details = require("./routes/DetailsRoutes");
+app.use(cors());
 
 app.use("/details/", details);
 

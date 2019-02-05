@@ -5,7 +5,7 @@ var codes = new Schema(
   {
     id: { type: String, required: true }
   },
-  { collection: "plans" }
+  { collection: "codes" }
 );
 
 var Codes = mongoose.model("codes", codes);

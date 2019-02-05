@@ -26,7 +26,7 @@ class FormResult extends Component {
           </header>
           <div className="card-content">
             <div className="content">
-              <h1 className="card-header-title">R$ {s.valor}</h1>
+              <h1 className="card-header-title">{s.valor}</h1>
             </div>
           </div>
         </Card>

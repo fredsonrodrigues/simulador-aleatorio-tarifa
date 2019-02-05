@@ -16,7 +16,7 @@ export const restartSimulation = () => (dispatch) => {
 
 export const getPlans = () => async (dispatch) => {
     try {
-        const plans = await axios('http://localhost:5000/plans')
+        const plans = await axios('http://localhost:5000/details/get-plans')
         dispatch({
             type: PLANS_DATA,
             payload: plans.data
@@ -29,7 +29,7 @@ export const getPlans = () => async (dispatch) => {
 
 export const getCodes = () => async (dispatch) => {
     try {
-        const codes = await axios('http://localhost:5000/codes')
+        const codes = await axios('http://localhost:5000/details/get-codes')
         dispatch({
             type: CODES_DATA,
             payload: codes.data
@@ -50,7 +50,8 @@ export const submitForm = (form) => async (dispatch) => {
         dispatch({
             type: LOADING_TRUE
         })
-        const codes = await axios.post('http://localhost:5000/calculate-rate', form)
+        const codes = await axios(
+            `http://localhost:5000/details/get-taxes-details/${form.plano}/${form.origem}/${form.destino}/${form.valor}/`)
         dispatch({
             type: FORM_DONE,
             payload: codes.data
