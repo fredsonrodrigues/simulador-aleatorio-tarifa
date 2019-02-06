@@ -9,7 +9,7 @@ class Input extends Component {
           <input 
               name={this.props.name} 
               className="input is-large" 
-              type="text" 
+              type="number" 
               value={this.props.value}
               onChange={this.props.onChange} />
         </div>

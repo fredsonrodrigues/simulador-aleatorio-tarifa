@@ -11,18 +11,30 @@ class FormPage extends Component {
     this.state = {
       form: this.props.form,
       codes: [],
-      plans: []
+      plans: [],
+      disabled: true
     };
     this.changeInput = this.changeInput.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.image = cellphones;
   }
 
+  checkForm = () => {
+    if (this.state.form.plano !== "" &&
+      this.state.form.origem !== "" &&
+      this.state.form.destino !== "" &&
+      this.state.form.valor !== "") {
+      this.setState({ disabled: false });
+    } else {
+      this.setState({ disabled: true });
+    }
+  }
+
   changeInput = e => {
     let val = this.state;
     val.form[e.target.name] = e.target.value;
-    console.log(val);
     this.setState(val);
+    this.checkForm()
   };
 
   submitForm() {
@@ -96,6 +108,7 @@ class FormPage extends Component {
   componentWillMount() {
     this.props.getPlans();
     this.props.getCodes();
+    this.checkForm()
   }
 
   render() {
@@ -109,7 +122,7 @@ class FormPage extends Component {
               Descubra o valor da sua chamada com ou sem um plano
               <strong> FaleMais</strong>.
             </p>
-            <img src={this.image} className="image-telzir" alt="telefone telzir"/>
+            <img src={this.image} className="image-telzir" alt="telefone telzir" />
           </div>
           <div className="column is-half">
             <div className="columns">
@@ -135,7 +148,7 @@ class FormPage extends Component {
             </div>
             <div className="columns">
               <div className="column is-three-quarters">
-                <Button onClick={this.submitForm}>Simular</Button>
+                <Button disabled={this.state.disabled} onClick={this.submitForm}>Simular</Button>
               </div>
             </div>
           </div>
