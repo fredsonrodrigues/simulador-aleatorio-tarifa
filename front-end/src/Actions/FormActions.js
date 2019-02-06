@@ -1,17 +1,17 @@
 import {
     FORM_SUBMIT,
     LOADING_TRUE,
-    PAGE_1,
     PLANS_DATA,
     CODES_DATA,
     FORM_DONE,
-    FORM_ERROR
+    FORM_ERROR,
+    FORM_RESET
 } from './AllActions';
 import axios from 'axios'
 
 export const restartSimulation = () => (dispatch) => {
     return dispatch({
-        type: PAGE_1
+        type: FORM_RESET
     })
 }
 
@@ -43,7 +43,6 @@ export const getCodes = () => async (dispatch) => {
 
 export const submitForm = (form) => async (dispatch) => {
     try {
-        console.log(form)
         dispatch({
             type: FORM_SUBMIT,
             payload: form

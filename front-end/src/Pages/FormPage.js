@@ -43,8 +43,7 @@ class FormPage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props.error)
-    this.setState({ plans: nextProps.plans, codes: nextProps.codes, error: this.props.error });
+    this.setState({ plans: nextProps.plans, codes: nextProps.codes, error: nextProps.error });
   }
 
   SelectPlano = props => {
@@ -111,9 +110,9 @@ class FormPage extends Component {
     if (this.state.error != null) {
       return (<div className="columns">
         <div className="column is-three-quarters">
-          <article class="message is-danger">
-            <div class="message-body">
-              {this.state.error.error}
+          <article className="message is-danger">
+            <div className="message-body">
+              {this.state.error.response.data.error}
             </div>
           </article>
         </div>
@@ -181,7 +180,8 @@ const mapStateToProps = state => {
   return {
     form: state.form.form,
     codes: state.form.codes,
-    plans: state.form.plans
+    plans: state.form.plans,
+    error: state.form.errors
   };
 };
 export default connect(

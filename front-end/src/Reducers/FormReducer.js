@@ -27,31 +27,31 @@ const INITIALSTATE = {
 export default function FormReducer(state = INITIALSTATE, action) {
     switch (action.type) {
         case FORM_SUBMIT:
-            console.log('FORM_SUBMIT Action')
+            //console.log('FORM_SUBMIT Action')
             return { ...state, form: action.payload };
         case FORM_RESET:
-            console.log('FORM_RESET Action')
-            return { ...state, form: action.payload };
+            //console.log('FORM_RESET Action')
+            return { ...state, errors: null, page: 1 };
         case FORM_DONE:
-            console.log('FORM_DONE Action')
+            //console.log('FORM_DONE Action')
             return { ...state, simulation: action.payload, page: 2 }; 
         case FORM_ERROR:
-            console.log('FORM_ERROR Action')
+            //console.log('FORM_ERROR Action')
             return { ...state, errors: action.payload, page: 1 };            
         case LOADING_TRUE:
-            console.log('LOADING_TRUE Action')
+            //console.log('LOADING_TRUE Action')
             return { ...state, page: 0 };
         case PAGE_1:
-            console.log('PAGE_1 Action')
+            //console.log('PAGE_1 Action')
             return { ...state, page: 1 };
         case PAGE_2:
-            console.log('PAGE_2 Action')
+            //console.log('PAGE_2 Action')
             return { ...state, page: 2 };
         case PLANS_DATA:
-            console.log('PLANS_DATA Action')
+            //console.log('PLANS_DATA Action')
             return { ...state, plans: action.payload };
         case CODES_DATA:
-            console.log('CODES_DATA Action')
+            //console.log('CODES_DATA Action')
             return { ...state, codes: action.payload };                       
         default:
             return state;
