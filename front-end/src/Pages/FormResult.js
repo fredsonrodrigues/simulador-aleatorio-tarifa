@@ -19,8 +19,8 @@ class FormResult extends Component {
   }
 
   ListCard = () => {
-    return this.state.simulation.map(s => (
-      <div className="column is-two-fifths">
+    return this.state.simulation.map((s, key )=> (
+      <div key={key} className="column is-two-fifths">
         <Card>
           <header className="card-header">
             <p className="card-header-title">{s.plano}</p>

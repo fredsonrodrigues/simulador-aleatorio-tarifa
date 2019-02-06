@@ -12,7 +12,8 @@ class FormPage extends Component {
       form: this.props.form,
       codes: [],
       plans: [],
-      disabled: true
+      disabled: true,
+      error: this.props.errors
     };
     this.changeInput = this.changeInput.bind(this);
     this.submitForm = this.submitForm.bind(this);
@@ -42,7 +43,8 @@ class FormPage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ plans: nextProps.plans, codes: nextProps.codes });
+    console.log(this.props.error)
+    this.setState({ plans: nextProps.plans, codes: nextProps.codes, error: this.props.error });
   }
 
   SelectPlano = props => {
@@ -105,6 +107,22 @@ class FormPage extends Component {
     );
   };
 
+  ErrorMessage = () => {
+    if (this.state.error != null) {
+      return (<div className="columns">
+        <div className="column is-three-quarters">
+          <article class="message is-danger">
+            <div class="message-body">
+              {this.state.error.error}
+            </div>
+          </article>
+        </div>
+      </div>)
+    } else {
+      return (<div></div>);
+    }
+  };
+
   componentWillMount() {
     this.props.getPlans();
     this.props.getCodes();
@@ -112,7 +130,7 @@ class FormPage extends Component {
   }
 
   render() {
-    const { SelectPlano, SelectOrigem, SelectDestino } = this;
+    const { SelectPlano, SelectOrigem, SelectDestino, ErrorMessage } = this;
     return (
       <div>
         <div className="columns">
@@ -125,6 +143,7 @@ class FormPage extends Component {
             <img src={this.image} className="image-telzir" alt="telefone telzir" />
           </div>
           <div className="column is-half">
+            <ErrorMessage />
             <div className="columns">
               <div className="column">
                 <SelectPlano label="1. Selecione o Plano" />

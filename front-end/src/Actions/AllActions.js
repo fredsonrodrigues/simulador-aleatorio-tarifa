@@ -1,6 +1,7 @@
 export const FORM_SUBMIT = 'FORM_SUBMIT';
 export const FORM_DONE = 'FORM_DONE';
 export const FORM_RESET = 'FORM_RESET';
+export const FORM_ERROR = 'FORM_ERROR';
 export const LOADING_FALSE = 'LOADING_FALSE';
 export const LOADING_TRUE = 'LOADING_TRUE';
 export const PAGE_1 = 'PAGE_1';

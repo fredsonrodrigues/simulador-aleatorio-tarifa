@@ -1,12 +1,21 @@
-version: '3.5'
+version: '3'
 services:
   telzir-frontend:
     container_name: telzir-frontend
     build:
       context: .
       dockerfile: ./Docker/Front.Dockerfile
-    restart: always
+    restart: unless-stopped
     environment:
       - NODE_ENV=production
     ports:
       - '5003:80'
+    depends_on: 
+        - telzir-back
+
+  telzir-back:
+    build:
+      context: .
+      dockerfile: ./Docker/Back.Dockerfile
+    container_name: telzir-back
+    restart: unless-stopped

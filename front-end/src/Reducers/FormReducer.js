@@ -6,7 +6,8 @@ import {
     PAGE_2, 
     PLANS_DATA,
     CODES_DATA,
-    FORM_DONE
+    FORM_DONE,
+    FORM_ERROR
 } from '../Actions/AllActions';
 
 const INITIALSTATE = {
@@ -20,7 +21,8 @@ const INITIALSTATE = {
     loading: false,
     page: 1,
     codes: [],
-    plans: []
+    plans: [],
+    errors: null
 };
 export default function FormReducer(state = INITIALSTATE, action) {
     switch (action.type) {
@@ -32,7 +34,10 @@ export default function FormReducer(state = INITIALSTATE, action) {
             return { ...state, form: action.payload };
         case FORM_DONE:
             console.log('FORM_DONE Action')
-            return { ...state, simulation: action.payload, page: 2 };            
+            return { ...state, simulation: action.payload, page: 2 }; 
+        case FORM_ERROR:
+            console.log('FORM_ERROR Action')
+            return { ...state, errors: action.payload, page: 1 };            
         case LOADING_TRUE:
             console.log('LOADING_TRUE Action')
             return { ...state, page: 0 };

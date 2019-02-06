@@ -4,7 +4,8 @@ import {
     PAGE_1,
     PLANS_DATA,
     CODES_DATA,
-    FORM_DONE
+    FORM_DONE,
+    FORM_ERROR
 } from './AllActions';
 import axios from 'axios'
 
@@ -57,9 +58,9 @@ export const submitForm = (form) => async (dispatch) => {
             payload: codes.data
         })
     } catch (error) {
-        console.log(error)
         dispatch({
-            type: PAGE_1
+            type: FORM_ERROR,
+            payload: error
         })
         return []
     }
