@@ -9,7 +9,7 @@ A animação de Loading é do [feng liang](https://codepen.io/anhulife/), Segue 
 O Sistema está rodando em docker. Para testar sugiro que instale-o caso não possua na maquina.
 
 ```sh
-git clone
+git clone https://github.com/fredsonrodrigues/simulador-aleatorio-tarifa.git
 cd simulador-aleatorio-tarifa
 docker-compose up
 ```
