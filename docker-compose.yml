@@ -1,6 +1,6 @@
 version: '3'
 services:
-  telzir-frontend:
+  tarifa-frontend:
     container_name: telzir-frontend
     build:
       context: .
@@ -11,11 +11,11 @@ services:
     ports:
       - '5003:80'
     depends_on: 
-        - telzir-back
+        - tarifa-back
 
-  telzir-back:
+  tarifa-back:
     build:
       context: .
       dockerfile: ./Docker/Back.Dockerfile
-    container_name: telzir-back
+    container_name: tarifa-back
     restart: unless-stopped

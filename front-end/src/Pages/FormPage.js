@@ -134,10 +134,10 @@ class FormPage extends Component {
       <div>
         <div className="columns">
           <div className="column is-half">
-            <p className="title">Simulador FaleMais</p>
+            <p className="title">Simulador Plano aletatório</p>
             <p className="subtitle">
               Descubra o valor da sua chamada com ou sem um plano
-              <strong> FaleMais</strong>.
+              <strong> Aleatorio</strong>.
             </p>
             <img src={this.image} className="image-telzir" alt="telefone telzir" />
           </div>

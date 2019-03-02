@@ -41,7 +41,7 @@ class FormResult extends Component {
       <div>
         <div className="columns">
           <div className="column is-half">
-            <p className="title">Simulador FaleMais Telzir</p>
+            <p className="title">Simulador Aleatório de tarifa</p>
             <p className="subtitle">
               Valores da ligação:
               <strong>
@@ -64,8 +64,8 @@ class FormResult extends Component {
           <div className="column is-half">
             <img
               src={this.image}
-              className="image-telzir"
-              alt="telefone telzir"
+              className="image-tarifa"
+              alt="telefone tarifa"
             />
           </div>
         </div>
